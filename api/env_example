@@ -1,3 +1,4 @@
+# change with prod or dev values - relevant only for supabase
 DB_MODE=local
 SQLITE_URL=sqlite:///app.db
 POSTGRES_URL=postgresql+psycopg2://user:pass@db.supabase.co:5432/postgres
