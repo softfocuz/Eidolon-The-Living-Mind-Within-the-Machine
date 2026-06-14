@@ -1,4 +1,4 @@
-from sqlalchemy import Column, String, Integer, Float, Boolean
+from sqlalchemy import Column, String, Integer, Float, Boolean, DateTime, func
 from db.session import Base
 
 class Event(Base):
@@ -20,3 +20,7 @@ class Event(Base):
     network_usage_mb = Column(Float)
     battery_drain_pct = Column(Float)
     is_anomaly = Column(Boolean)
+
+    created_at = Column(DateTime, server_default=func.now(), nullable=False)
+    updated_at = Column(DateTime, server_default=func.now(), onupdate=func.now(), nullable=False)
+    is_deleted = Column(Boolean, default=False, nullable=False)
