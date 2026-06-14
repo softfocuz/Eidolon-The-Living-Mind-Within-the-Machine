@@ -1,11 +1,13 @@
 import os
+from dotenv import load_dotenv
 
-DB_MODE = os.getenv("DB_MODE", "local")  
+load_dotenv()
 
-SQLITE_URL = "sqlite:///app.db"
+DB_MODE = os.getenv("DB_MODE", "local")
 
-# Supabase Postgres connection string
+SQLITE_URL = os.getenv("SQLITE_URL", "sqlite:///app.db")
+
 POSTGRES_URL = os.getenv(
     "POSTGRES_URL",
-    "postgresql+psycopg2://user:pass@db.supabase.co:5432/postgres" # not done with setup yet
+    "postgresql+psycopg2://user:pass@db.supabase.co:5432/postgres"
 )
