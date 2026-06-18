@@ -1,7 +1,7 @@
 import uuid
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy import Column, String, Integer, Float, Boolean, DateTime, Date, func
-from api.db.session import Base
+from db.session import Base
 
 class Event(Base):
     __tablename__ = "events"

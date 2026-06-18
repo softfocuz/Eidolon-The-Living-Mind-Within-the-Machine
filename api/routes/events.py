@@ -5,9 +5,9 @@ from datetime import datetime
 import csv
 import io
 
-from api.db.session import get_db
-from api.db.models import Event
-from api.schemas.events import EventCreate, EventResponse
+from db.session import get_db
+from db.models import Event
+from schemas.events import EventCreate, EventResponse
 
 router = APIRouter(prefix="/events", tags=["events"])
 

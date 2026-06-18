@@ -9,7 +9,7 @@ from routes import events
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--mode", choices=["local", "cloud"], default="local")
-args = parser.parse_args()
+args, _ = parser.parse_known_args()
 
 engine = get_engine(args.mode)
 SessionLocal.configure(bind=engine)
