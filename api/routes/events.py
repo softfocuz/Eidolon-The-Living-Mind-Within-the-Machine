@@ -5,9 +5,9 @@ from datetime import datetime
 import csv
 import io
 
-from db.session import get_db
-from db.models import Event
-from schemas.events import EventCreate, EventResponse
+from api.db.session import get_db
+from api.db.models import Event
+from api.schemas.events import EventCreate, EventResponse
 
 router = APIRouter(prefix="/events", tags=["events"])
 
@@ -78,12 +78,12 @@ def upload_csv(file: UploadFile = File(...), db: Session = Depends(get_db)):
             app_category=row["app_category"],
             previous_app=None if row["previous_app"] == "None" else row["previous_app"],
 
-            event_time=datetime.strptime(
+            timestamp=datetime.strptime(
                 row["timestamp"],
                 "%Y-%m-%d %H:%M:%S"
             ),
 
-            event_date=row["date"],
+            date=row["date"],
             hour_of_day=int(row["hour_of_day"]),
             day_of_week=row["day_of_week"],
             is_weekend=bool(int(row["is_weekend"])),
@@ -96,7 +96,16 @@ def upload_csv(file: UploadFile = File(...), db: Session = Depends(get_db)):
             network_usage_mb=float(row["network_usage_mb"]),
             battery_drain_pct=float(row["battery_drain_pct"]),
 
-            is_anomaly=bool(int(row["is_anomaly"]))
+            is_anomaly=bool(int(row["is_anomaly"])),
+
+            session_duration_min=int(row["session_duration_min"]),
+            day_part=str(row["day_part"]),
+            session_duration_sec_outlier=bool(int(row["session_duration_sec_outlier"])),
+            cpu_usage_pct_outlier=bool(int(row["cpu_usage_pct_outlier"])),
+            ram_usage_mb_outlier=bool(int(row["ram_usage_mb_outlier"])),
+            network_usage_mb_outlier=bool(int(row["network_usage_mb_outlier"])),
+            battery_drain_pct_outlier=bool(int(row["battery_drain_pct"])),
+            previous_to_current_probability=float(row["previous_to_current_probability"])
         )
 
         batch.append(obj)
