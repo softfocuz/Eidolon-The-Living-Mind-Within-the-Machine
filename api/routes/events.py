@@ -104,7 +104,7 @@ def upload_csv(file: UploadFile = File(...), db: Session = Depends(get_db)):
             cpu_usage_pct_outlier=bool(int(row["cpu_usage_pct_outlier"])),
             ram_usage_mb_outlier=bool(int(row["ram_usage_mb_outlier"])),
             network_usage_mb_outlier=bool(int(row["network_usage_mb_outlier"])),
-            battery_drain_pct_outlier=bool(int(row["battery_drain_pct"])),
+            battery_drain_pct_outlier=bool(int(row["battery_drain_pct_outlier"])),
             previous_to_current_probability=float(row["previous_to_current_probability"])
         )
 

@@ -24,7 +24,7 @@ class EventBase(BaseModel):
     session_duration_min: int
     day_part: str
     session_duration_sec_outlier: Optional[bool] = False
-    cpu_usage_usage_pct_outlier: Optional[bool] = False
+    cpu_usage_pct_outlier: Optional[bool] = False
     ram_usage_mb_outlier: Optional[bool] = False
     network_usage_mb_outlier: Optional[bool] = False
     battery_drain_pct_outlier: Optional[bool] = False
