@@ -6,7 +6,7 @@ from db.session import Base
 class Event(Base):
     __tablename__ = "events"
 
-    id = Column(UUID(as_uuid=True), primary_key=True)
+    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
     session_id = Column(Integer)
     app_name = Column(String)
     app_category = Column(String)

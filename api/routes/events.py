@@ -83,7 +83,7 @@ def upload_csv(file: UploadFile = File(...), db: Session = Depends(get_db)):
                 "%Y-%m-%d %H:%M:%S"
             ),
 
-            date=row["date"],
+            date=datetime.strptime(row["timestamp"], "%Y-%m-%d %H:%M:%S").date(),
             hour_of_day=int(row["hour_of_day"]),
             day_of_week=row["day_of_week"],
             is_weekend=bool(int(row["is_weekend"])),
