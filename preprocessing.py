@@ -6,7 +6,7 @@ df['timestamp'] = pd.to_datetime(df['timestamp'], dayfirst=True) # fix data type
 df.drop(columns=['date'], inplace=True) # delete original date column
 df['date'] = df['timestamp'].dt.date # create new date column and extract date from timestamp column
 
-df['previous_app'] = df['previous_app'].fillna('NONE') # based on the missing value analysis[testing.ipynb], only this column contains missing values
+df['previous_app'] = df['previous_app'].fillna('NONE') # based on the missing value analysis[test_preprocessing.ipynb], only this column contains missing values
 
 df['session_duration_sec'] = df['session_duration_sec'].astype(int)
 # ensure session_duration_sec is stored as integer

@@ -4,7 +4,7 @@ from db.engine import get_engine
 from db.session import SessionLocal, Base
 import uvicorn
 import argparse
-from routes import events
+from routes import events, predict
 
 
 parser = argparse.ArgumentParser()
@@ -15,9 +15,7 @@ engine = get_engine(args.mode)
 SessionLocal.configure(bind=engine)
 Base.metadata.create_all(bind=engine)
 
-origins = [
-    "http://localhost:8000"
-]
+origins = ["http://localhost:8000"]
 
 app = FastAPI()
 app.add_middleware(
@@ -26,10 +24,11 @@ app.add_middleware(
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
-
 )
 
 app.include_router(events.router)
+app.include_router(predict.router)
+
 @app.get("/")
 def root():
     return {"status": "ok", "message": "API running"}
@@ -38,7 +37,8 @@ def root():
 def start():
     print("Starting FastAPI application...")
     uvicorn.run(
-        "main:app",   host="0.0.0.0",
+        "main:app",
+        host="0.0.0.0",
         port=8000,
         reload=True,
         log_level="info",
